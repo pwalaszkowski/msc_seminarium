@@ -1,3 +1,6 @@
 evaluate==0.4.3
 pdfreader==0.1.15
 PyPDF2~=3.0.1
+rouge-score==0.1.2
+nltk==3.9.1
+absl-py==2.1.0

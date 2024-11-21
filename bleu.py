@@ -37,5 +37,3 @@ with open('bleu_results.csv', mode='w', newline='') as file:
     writer.writerow(['Length Ratio', results['length_ratio']])
     writer.writerow(['Translation Length', results['translation_length']])
     writer.writerow(['Reference Length', results['reference_length']])
-
-
