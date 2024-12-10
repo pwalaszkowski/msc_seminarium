@@ -9,8 +9,8 @@ def load_pdf_text(file_path):
         text.extend(page.extract_text().splitlines())
     return [line.strip() for line in text if line.strip()]
 
-predictions = load_pdf_text('predictions.pdf')
-references = load_pdf_text('reference.pdf')
+predictions = load_pdf_text('files/predictions.pdf')
+references = load_pdf_text('files/reference.pdf')
 
 min_len = min(len(predictions), len(references))
 predictions = predictions[:min_len]
