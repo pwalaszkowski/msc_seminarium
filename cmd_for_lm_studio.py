@@ -134,15 +134,20 @@ def main():
 
     print("LM Studio is ready for conversation. Type 'exit' to quit.")
 
-    # Conversation loop
-    while True:
-        user_input = input("User: ").strip()
-        if user_input.lower() in ["exit", "bye", "end"]:
-            print("Exiting the conversation.")
-            break
+    # TODO: Workaround to pass the questions directly to model
+    model_response = lm_studio.send_message("Brief Yourself", system_message)
+    print(f"Model: {model_response}")
 
-        model_response = lm_studio.send_message(user_input, system_message)
-        print(f"Model: {model_response}")
+    # # Conversation loop
+    # while True:
+    #     user_input = input("User: ").strip()
+    #     os.system("Brief yourself")
+    #     if user_input.lower() in ["exit", "bye", "end"]:
+    #         print("Exiting the conversation.")
+    #         break
+    #
+    #     model_response = lm_studio.send_message(user_input, system_message)
+    #     print(f"Model: {model_response}")
 
     # Clean up: Unload the model and stop the server
     lm_studio.eject_model(model_name)
