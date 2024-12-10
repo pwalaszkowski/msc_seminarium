@@ -39,7 +39,7 @@ def main():
     config = LMStudioConfig()
 
     # Read system message from file
-    system_message = read_file_content("system_message.txt")
+    system_message = read_file_content("../system_message.txt")
     if system_message is None:
         return
 
