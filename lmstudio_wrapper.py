@@ -137,6 +137,9 @@ def main():
     # TODO: Workaround to pass the questions directly to model
     model_response = lm_studio.send_message("Brief Yourself", system_message)
     print(f"Model: {model_response}")
+    model_response = lm_studio.send_message("Create PDF with digits from 1 to 9", system_message)
+    print(f"Model: {model_response}")
+
 
     # # Conversation loop
     # while True:
