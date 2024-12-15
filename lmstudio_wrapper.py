@@ -1,7 +1,28 @@
+import configparser
 import json
 import os
 import requests
 import shutil
+
+from datetime import datetime
+
+
+class Config:
+    """
+    Base configuration class to load settings from config.ini.
+    """
+
+    def __init__(self, config_file='config.ini', environment='DEFAULT'):
+        self.config = configparser.ConfigParser()
+        self.config.read(config_file)
+
+        # Load DEFAULT or specified environment settings
+        self.env = self.config[environment]
+
+    @property
+    def MODEL(self):
+        return self.env.get('MODEL', fallback='Model')
+
 
 class LMStudio:
     """
@@ -116,15 +137,17 @@ def main():
     """
     Main function to manage dynamic conversations with LM Studio.
     """
+    environment = 'DEFAULT'  # or 'testing', 'production'
+    config = Config(environment=environment)
+
     lm_studio = LMStudio()
 
     # Start the server and load the model
     lm_studio.start_server()
     lm_studio.check_server_status()
 
-    model_name = "qwen2-0.5b-instruct"
-    lm_studio.download_model(model_name)
-    lm_studio.load_model(model_name)
+    lm_studio.download_model(config.MODEL)
+    lm_studio.load_model(config.MODEL)
 
     # Read system message from a file
     system_message = read_file_content("system_message.txt")
@@ -132,14 +155,19 @@ def main():
         print("System message file is missing.")
         return
 
-    print("LM Studio is ready for conversation. Type 'exit' to quit.")
-
-    # TODO: Workaround to pass the questions directly to model
-    model_response = lm_studio.send_message("Brief Yourself", system_message)
-    print(f"Model: {model_response}")
-    model_response = lm_studio.send_message("Create PDF with digits from 1 to 9", system_message)
+    # Ask a question
+    model_response = lm_studio.send_message("Create me a for loop in Python", system_message)
     print(f"Model: {model_response}")
 
+    # Generate timestamp and output file name
+    timestamp = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
+    file_name = f'{config.MODEL.replace("/","_")}_{timestamp}'
+
+    # Save output from model to txt file
+    with open(os.path.join('output', file_name), "w") as file:
+        file.write(model_response)
+
+    print(f"Model output has been saved to {file_name}.")
 
     # # Conversation loop
     # while True:
@@ -153,7 +181,7 @@ def main():
     #     print(f"Model: {model_response}")
 
     # Clean up: Unload the model and stop the server
-    lm_studio.eject_model(model_name)
+    lm_studio.eject_model(config.MODEL)
     lm_studio.stop_server()
 
     # Optional: Clear downloaded models
