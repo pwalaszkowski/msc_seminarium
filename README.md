@@ -2,6 +2,7 @@
 **1. Prerequisites**
    1. Python 3.13.x must be installed - [download](https://www.python.org/downloads/)
    2. LM Studio v0.3.5 must be installed - [release notes](https://lmstudio.ai/blog/lmstudio-v0.3.5)
+
 **2. Check that Python has been installed correctly**
    1. Execute following command 
    ```shell
@@ -20,7 +21,7 @@ Set up the port to 8080 (or other - in case that 8080 is used)
 
 ![img.png](docs/lmstudiosetup.png)
 
-**4. Check that LMStudio can be run from commandline
+**4. Check that LMStudio can be run from commandline**
 
    ```shell
    lms
