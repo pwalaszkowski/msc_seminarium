@@ -23,6 +23,12 @@ class Config:
     def MODEL(self):
         return self.env.get('MODEL', fallback='Model')
 
+    def PROMPT(self):
+        return self.env.get('PROMPT', fallback='Prompt')
+
+    def MODEL_PATH(self):
+        return self.env.get('MODEL_PATH', fallback='Model_Path')
+
 
 class LMStudio:
     """
@@ -140,6 +146,8 @@ def main():
     environment = 'DEFAULT'  # or 'testing', 'production'
     config = Config(environment=environment)
 
+    print('MODEL_PATH', config.MODEL_PATH())
+
     lm_studio = LMStudio()
 
     # Start the server and load the model
@@ -156,7 +164,8 @@ def main():
         return
 
     # Ask a question
-    model_response = lm_studio.send_message("Create me a for loop in Python", system_message)
+
+    model_response = lm_studio.send_message(config.PROMPT(), system_message)
     print(f"Model: {model_response}")
 
     # Generate timestamp and output file name
@@ -185,12 +194,7 @@ def main():
     lm_studio.stop_server()
 
     # Optional: Clear downloaded models
-    # TODO: Temporary hardcoded path
-    base_path = r"C:\Users\pwala"
-    sub_path = ".cache"
-    sub_sub_path = "lm-studio"
-    final_folder = "models"
-    model_directory = os.path.join(base_path, sub_path, sub_sub_path, final_folder)
+    model_directory = config.MODEL_PATH().replace("\\", "/")
 
     lm_studio.clear_directory(model_directory)
     if lm_studio.is_directory_empty(model_directory):
