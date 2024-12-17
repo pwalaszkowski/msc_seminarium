@@ -112,6 +112,14 @@ https://github.com/pwalaszkowski/msc_seminarium/archive/refs/heads/master.zip
 7. Download required packages via pip
 
    ```shell
+   Navigate to main directory (msc_seminarium)
+   
+   Confirm that you are in main directory 
+   ls 
+   
+   
+   
+   
    python -m pip install -r requirements.txt
    ```
    
@@ -140,3 +148,10 @@ https://github.com/pwalaszkowski/msc_seminarium/archive/refs/heads/master.zip
       `MODEL_YYYY_MM_DD_HH_MM_SS`
    7. The wrapper will eject the model
    8. The wrapper will remove the downloaded models
+
+
+# Model downloads 
+https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct
+
+# API 
+https://lmstudio.ai/docs/api/rest-api 
