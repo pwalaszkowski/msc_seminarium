@@ -163,8 +163,6 @@ def main():
     environment = 'DEFAULT'  # or 'testing', 'production'
     config = Config(environment=environment)
 
-    print('MODEL_PATH', config.MODEL_PATH())
-
     lm_studio = LMStudio()
 
     # Start the server and load the model
