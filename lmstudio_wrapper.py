@@ -44,6 +44,7 @@ class LMStudio:
         """
         Sends a message to the LM Studio API and retrieves the response.
 
+
         :param input_text: User's input text
         :param system_message: System context message
         :param model: Model name
@@ -179,7 +180,6 @@ def main():
         return
 
     # Ask a question
-
     model_response = lm_studio.send_message(config.PROMPT(), system_message)
     print(f'Model: {model_response}')
 
