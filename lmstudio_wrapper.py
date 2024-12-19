@@ -9,6 +9,8 @@ import rouge
 from fpdf import FPDF
 from datetime import datetime
 
+from helpers import load_pdf_pages, load_pdf_text
+
 
 class Config:
     """
@@ -151,7 +153,7 @@ def txt_to_pdf(txt_file, pdf_file):
     # Open the text file and add its content to the PDF
     with open(txt_file, 'r') as file:
         for line in file:
-            pdf.multi_cell(120, 10, txt=line.strip())
+            pdf.multi_cell(183, 10, txt=line.strip())
 
     # Save the PDF
     pdf.output(pdf_file)
@@ -161,6 +163,8 @@ def main():
     """
     Main function to manage dynamic conversations with LM Studio.
     """
+    loaded_pdf = load_pdf_text('docs/example.pdf')
+
     environment = 'DEFAULT'  # or 'testing', 'production'
     config = Config(environment=environment)
 
@@ -180,7 +184,9 @@ def main():
         return
 
     # Ask a question
-    model_response = lm_studio.send_message(config.PROMPT(), system_message)
+    print(f'{loaded_pdf}\n\n{config.PROMPT()}')
+
+    model_response = lm_studio.send_message(f'{loaded_pdf}\n\n{config.PROMPT()}', system_message)
     print(f'Model: {model_response}')
 
     # Generate timestamp and output file name
