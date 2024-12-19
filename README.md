@@ -77,11 +77,13 @@ https://github.com/pwalaszkowski/msc_seminarium/archive/refs/heads/master.zip
 
 **6. Navigate to repository directory**
 
-   1. Setup Python venv in current working directory
+   **1. Setup Python venv in current working directory**
+
    ```shell
    python -m venv env
    ```
-   2. Confirm that env is created (the directory env should exist)
+   **2. Confirm that env is created (the directory env should exist)**
+   
    ```shell
    $ ls -la env/
    total 14
@@ -93,39 +95,38 @@ https://github.com/pwalaszkowski/msc_seminarium/archive/refs/heads/master.zip
    drwxr-xr-x 1 pwala 197609   0 Dec 17 18:35 Scripts/
    -rw-r--r-- 1 pwala 197609 337 Dec 17 18:35 pyvenv.cfg 
    ```
-   3. Navigate to directory `env/Scripts`
+
+   **3. Navigate to directory `env/Scripts`**
 
    Activate virtual environment running the activate script
+
    ```shell
    ./activate.bat
    ```
    Under Linux machine the script will be called
+
    ```shell
    ./activate 
    ```
-   4. The user prompt should now start with `(env)`
+   **4. The user prompt should now start with `(env)`**
    
    ```shell
    (env) C:\Repositories\
    ```
 
-7. Download required packages via pip
+**7. Download required packages via pip**
 
    ```shell
    Navigate to main directory (msc_seminarium)
    
    Confirm that you are in main directory 
-   ls 
-   
-   
-   
    
    python -m pip install -r requirements.txt
    ```
    
 ## Running prompts
-1. Open LMStudio (do not run any prompts or download models)
-2. Navigate to config.ini file to set the model, prompt and model paths under Windows 
+**1. Open LMStudio (do not run any prompts or download models)**
+**2. Navigate to config.ini file to set the model, prompt and model paths under Windows** 
 
    ```ini
    [DEFAULT]
@@ -150,8 +151,30 @@ https://github.com/pwalaszkowski/msc_seminarium/archive/refs/heads/master.zip
    8. The wrapper will remove the downloaded models
 
 
+## Cleanup the env. **
+**1. Navigate to directory `env/Scripts`. Deactivate virtual environment running the deactivate script**
+   
+   ```shell
+   ./deactivate.bat
+   ```
+
+   Under Linux machine the script will be called
+
+   ```shell
+   ./deactivate 
+   ```
+
+**2. The user prompt should now no longer start with `(env)`**
+   
+   ```shell
+   C:\Repositories\
+   ```
+
 # Model downloads 
 https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct
 
 # API 
 https://lmstudio.ai/docs/api/rest-api 
+
+# Postman API Collection
+[Postman Collection](docs/LMStudio.postman_collection.json)

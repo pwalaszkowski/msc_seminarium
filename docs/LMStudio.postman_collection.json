@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "8168acc8-7195-4dc8-b13e-b5f03a48d8b5",
+		"name": "LMStudio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5343143"
+	},
+	"item": [
+		{
+			"name": "Get Models",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/models/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"models",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Specific Model",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/models/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"models",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CompletionsChat",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"model\": \"qwen2-0.5b-instruct\",\r\n    \"messages\": [\r\n        {\"role\": \"system\", \"content\": \"Hi\"},\r\n        {\"role\": \"user\", \"content\": \"brief yourself\"}\r\n    ],\r\n    \"temperature\": 0.7\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/chat/completions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"chat",
+						"completions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Completion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"model\": \"meta-llama-3.1-8b-instruct\",\r\n    \"prompt\": \"the meaning of life is\",\r\n    \"temperature\": 0.7,\r\n    \"max_tokens\": 10,\r\n    \"stream\": false,\r\n    \"stop\": \"\\n\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/completions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"completions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Embeddings",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// Here specific model is required\r\n{   \r\n    \"model\": \"meta-llama-3.1-8b-instruct\",\r\n    \"input\": \"Some text to embed\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/embeddings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"embeddings"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
